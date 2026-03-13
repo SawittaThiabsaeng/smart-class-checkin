@@ -1,53 +1,101 @@
 # Smart Class Check-in App
 
-Flutter application for classroom check-in and finish-class reflection.
+Smart Class Check-in App is a Flutter MVP for classroom attendance and learning reflection. The app allows students to check in before class, finish class after class, capture GPS location, scan QR codes, answer reflection questions, and store records locally using SQLite.
 
-The app includes:
-- Home dashboard with navigation
-- Check-in Before Class screen
-- Finish Class screen
-- QR scanning (Android camera, manual input on Web and Windows)
+## Project Description
+
+This project was built for the Smart Class Check-in & Learning Reflection App lab exam. The goal is to verify student participation by combining three types of evidence:
+
+- GPS location
+- QR code scanning
+- Learning reflection form input
+
+Main screens in the app:
+
+- Home Screen
+- Check-in Screen
+- Finish Class Screen
+
+Main capabilities:
+
+- Navigation between screens
+- QR code scanning with camera support
 - GPS location capture
-- Local SQLite helper for attendance records
-
-## Features
-
-1. Navigation
-- HomeScreen is the start screen
-- Navigate to CheckInScreen and FinishClassScreen
-
-2. Check-in flow
-- Capture GPS location
-- Scan or enter QR
-- Select mood
-- Enter previous topic and expected topic
-
-3. Finish-class flow
-- Capture GPS location
-- Scan or enter QR
-- Enter learned today and feedback
-
-4. Local database helper
-- SQLite helper class included at lib/data/database_helper.dart
-- Supports saveCheckIn and saveCheckOut methods
+- Mood selection and text form input
+- Local SQLite data storage for check-in and check-out records
 
 ## Tech Stack
 
-- Flutter (MaterialApp + named routes)
+- Flutter
+- MaterialApp with named routes
 - geolocator
 - mobile_scanner
 - sqflite
 - path
 
-## Platform Behavior
+## Setup Instructions
 
-1. QR code
-- Android: camera scanning via mobile_scanner
-- Web and Windows: manual QR text input screen
+1. Install Flutter SDK and verify the environment.
 
-2. GPS
-- Android: real-time GPS with permission and service checks
-- Web and Windows: location retrieval supported through geolocator (depends on browser and OS permissions)
+```bash
+flutter doctor
+```
+
+2. Open the project folder.
+
+```bash
+cd student_checkin_app
+```
+
+3. Install dependencies.
+
+```bash
+flutter pub get
+```
+
+## How To Run The App
+
+Run on Chrome:
+
+```bash
+flutter run -d chrome
+```
+
+Run on Windows:
+
+```bash
+flutter run -d windows
+```
+
+Run on Android:
+
+```bash
+flutter run -d android
+```
+
+Build for web:
+
+```bash
+flutter build web
+```
+
+Build for Windows:
+
+```bash
+flutter build windows
+```
+
+Build Android APK:
+
+```bash
+flutter build apk
+```
+
+## Platform Notes
+
+- Android: QR scanning uses the camera and GPS uses geolocator.
+- Web: QR scanning can use the browser camera, and GPS depends on browser permission.
+- Windows: GPS depends on Windows location settings. QR input may fall back depending on platform support.
 
 ## Project Structure
 
@@ -58,101 +106,82 @@ The app includes:
 - lib/screens/qr_scanner_screen.dart
 - lib/data/database_helper.dart
 
-## Setup
+## Local Data Storage
 
-1. Install Flutter SDK and verify:
+SQLite helper is implemented in lib/data/database_helper.dart.
 
-	flutter doctor
+Stored fields:
 
-2. Install dependencies:
-
-	flutter pub get
-
-## Run
-
-1. Web:
-
-	flutter run -d chrome
-
-2. Windows:
-
-	flutter run -d windows
-
-3. Android:
-
-	flutter run -d android
-
-## Build
-
-1. Web build:
-
-	flutter build web
-
-2. Windows build:
-
-	flutter build windows
-
-3. Android APK:
-
-	flutter build apk
+- studentId
+- checkinTime
+- checkinLocation
+- checkoutTime
+- checkoutLocation
+- mood
+- previousTopic
+- expectedTopic
+- learnedToday
+- feedback
 
 ## Firebase Configuration Notes
 
-This project is prepared for Firebase Hosting deployment (Web).
+This project can be deployed to Firebase Hosting for the web version.
 
-1. Install Firebase CLI:
+1. Install Firebase CLI.
 
-	npm install -g firebase-tools
+```bash
+npm install -g firebase-tools
+```
 
-2. Login to Firebase:
+2. Login to Firebase.
 
-	firebase login
+```bash
+firebase login
+```
 
-3. Initialize Firebase in project root:
+3. Initialize Firebase Hosting in the project root.
 
-	firebase init
+```bash
+firebase init
+```
 
-Recommended options:
-- Select Hosting
-- Choose your Firebase project
+Recommended Hosting settings:
+
+- Choose Hosting
+- Select your Firebase project
 - Set public directory to build/web
-- Configure as single-page app: Yes
+- Configure as a single-page app: Yes
 
-4. Build Flutter web app:
+4. Build the Flutter web app.
 
-	flutter build web
+```bash
+flutter build web
+```
 
-5. Deploy to Firebase Hosting:
+5. Deploy to Firebase Hosting.
 
-	firebase deploy
+```bash
+firebase deploy
+```
 
-6. Save deployed URL in your submission.
+6. Save the generated Firebase Hosting URL in your submission.
 
 Notes:
-- Current MVP uses local SQLite for data storage.
-- If Firestore is required, add firebase_core and cloud_firestore, then configure Android/iOS/Web app IDs from Firebase Console.
-- For Web app config, create Firebase web app in Firebase Console and include the generated config in your Flutter web setup.
+
+- Current MVP stores data locally using SQLite.
+- Firebase Hosting is used for deployment of the web build.
+- If Firebase data storage is needed later, firebase_core and cloud_firestore can be added separately.
 
 ## Permissions Notes
 
-1. Android
-- Camera and location permissions are configured in android/app/src/main/AndroidManifest.xml
+- Android camera and location permissions are configured in android/app/src/main/AndroidManifest.xml.
+- iOS camera and location usage descriptions are configured in ios/Runner/Info.plist.
+- Web requires camera and location permission from the browser.
+- Windows requires location access to be enabled in system settings.
 
-2. iOS
-- Camera and location usage descriptions are configured in ios/Runner/Info.plist
+## Quick Verification
 
-3. Web
-- Allow location permission in the browser when prompted
-
-4. Windows
-- Enable system location from Windows settings if location is unavailable
-
-## Quick Verify
-
-1. Check project health:
-
-	flutter analyze
-
-2. Optional tests:
-
-	flutter test
+```bash
+flutter analyze
+flutter test
+```
