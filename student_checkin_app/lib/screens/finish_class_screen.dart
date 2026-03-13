@@ -388,7 +388,10 @@ class _FinishClassScreenState extends State<FinishClassScreen> {
                               ),
                               child: const Text(
                                 "Submit Reflection",
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),

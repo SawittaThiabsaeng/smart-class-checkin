@@ -414,7 +414,11 @@ class _CheckInScreenState extends State<CheckInScreen> {
                               ),
                               child: const Text(
                                 "Submit Check-in",
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                color: Colors.white,
+                                ),
+      
                               ),
                             ),
                           ),
