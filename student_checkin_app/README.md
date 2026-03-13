@@ -185,3 +185,10 @@ Notes:
 flutter analyze
 flutter test
 ```
+## AI Usage Report
+
+AI tools used in this project include ChatGPT, GitHub Copilot, and Google Gemini.
+
+AI was mainly used to generate Flutter UI scaffolding, QR scanner integration, and basic Firebase configuration guidance. It also assisted in debugging code errors and suggesting improvements during development.
+
+I reviewed and modified the generated code to fit the application requirements. I implemented the check-in logic, adjusted the UI layout, handled Firebase data structure, and ensured that the application flow worked correctly.
